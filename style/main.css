@@ -1,0 +1,61 @@
+#tblGrid {
+    margin-top: 20px;
+}
+#tblDetailsGrid {
+    margin-top: 20px;
+}
+#LeftJoinOrderGrid{
+    margin-top: 20px;
+}
+
+#tblGrid tr th,
+table tr td {
+    border: 1px solid black;
+    padding: 5px 0px 5px 0px;
+    text-align: center;
+}
+#tblDetailsGrid tr th,
+table tr td {
+    border: 1px solid black;
+    padding: 5px 0px 5px 0px;
+    text-align: center;
+}
+#LeftJoinOrderGrid tr th,
+table tr td {
+    border: 1px solid black;
+    padding: 5px 0px 5px 0px;
+    text-align: center;
+}
+#LeftJoinOrderGrid1 tr th,
+table tr td {
+    border: 1px solid black;
+    padding: 5px 0px 5px 0px;
+    text-align: center;
+}
+#LeftJoinOrderGrid2 tr th,
+table tr td {
+    border: 1px solid black;
+    padding: 5px 0px 5px 0px;
+    text-align: center;
+}
+#LeftJoinOrderGrid3 tr th,
+table tr td {
+    border: 1px solid black;
+    padding: 5px 0px 5px 0px;
+    text-align: center;
+}
+.order{
+	color:red !important;
+}
+.row-centered {
+    text-align: center;
+}
+
+.col-centered {
+    display: inline-block;
+    float: none;
+    /* reset the text-align */
+    text-align: left;
+    /* inline-block space fix */
+    margin-right: -4px;
+}
