@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crud Demo using jsstore</title>
+    <script src="jsstore.js"></script>
+</head>
+<body>
+<h4>We have included JsStore in this html code.</h4>
+<script>
+	function cloneTable(tableCfg,tableName){
+		var newObj = {};
+		for(var p in tableCfg){
+			newObj[p] = tableCfg[p];
+		}
+		newObj.name = tableName;
+		return newObj;
+	}
+
+	var dbName ='JsStore_Demo';
+	function getDbSchema() {
+	  var tblProduct = {
+		name: 'Product',
+		columns: {
+			// Here "Id" is name of column 
+			id:{ primaryKey: true, autoIncrement: true },
+			itemName:  { notNull: true, dataType: "string" },
+			price:  { notNull: true, dataType: "number" },
+			quantity : { notNull: true, dataType: "number" }
+		}
+	  };
+	  var db = {
+		  name: dbName,
+		  tables: [tblProduct]
+	  }
+	  for(var i = 0; i < 16; i++){
+		db.tables.push(cloneTable(tblProduct,'Product'+i));
+	  }
+	  return db;
+	}
+	
+	var connection = new JsStore.Connection(new Worker('jsstore.worker.js'));
+
+	async function initJsStore() {
+		  var database = getDbSchema();
+		  const isDbCreated = await connection.initDb(database);
+		  if(isDbCreated===true){
+			  console.log("db created");
+			  //console.info(new Date().getTime());
+			  var queryStart = parseInt(new Date().getTime());
+			  connection.select({from:'Product5',where:{itemName:'1e4ccec3-7277-455f-a696-ae51905548c7'}}).then(function(rs){
+					var queryEnd = parseInt(new Date().getTime());
+					console.info('use times:'+(queryEnd - queryStart));
+			  });
+		  }
+		  else {
+			  console.log("db opened");
+			  var queryStart = parseInt(new Date().getTime());
+			  connection.select({from:'Product5',where:{itemName:'1e4ccec3-7277-455f-a696-ae51905548c7'}}).then(function(rs){
+					var queryEnd = parseInt(new Date().getTime());
+					console.info('use times:'+(queryEnd - queryStart));
+			  });
+		  }
+	}
+	
+	initJsStore();
+	
+</script>
+</body>
+</html>
